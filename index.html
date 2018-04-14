@@ -1,0 +1,10 @@
+<html>
+<form><input name="user" placeholder="user"></form>
+
+{{with .}}
+<p>found {{.TotalCount}} comments in {{.Duration}}</p>
+{{range .Comments}}
+    <li>{{.GC.Created.Format "2006-01-02 15:04:05"}} on <a href='{{printf "https://github.com/%s/issues/%d#issuecomment-%d" .GR.ID .GI.Number .GC.ID}}'>{{.GR.ID}}: {{.GI.Title}}</a></li>
+{{end}}
+{{end}}
+</html>
