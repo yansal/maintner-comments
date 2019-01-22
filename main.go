@@ -1,3 +1,4 @@
+//go:generate go run generate_embedded.go
 package main
 
 import (
@@ -32,7 +33,7 @@ type server struct {
 }
 
 func newServer() *server {
-	s := &server{t: template.Must(template.ParseFiles("index.html"))}
+	s := &server{t: template.Must(template.New("").Parse(indexHTML))}
 	go func() {
 		corpus, err := godata.Get(context.Background())
 		if err != nil {
